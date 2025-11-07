@@ -3,20 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SoftwoNexa - Profil Kelas</title>
+    <title>SoftwoNexa</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary: #8B0000;
-            --secondary: #A52A2A;
-            --accent: #CD5C5C;
-            --light: #FFF5F5;
-            --dark: #2C0707;
-            --success: #228B22;
-            --warning: #D2691E;
-            --info: #4682B4;
-            --text: #333333;
+            --primary: #1a1a2e;
+            --secondary: #16213e;
+            --accent: #0f3460;
+            --highlight: #e94560;
+            --light: #f5f5f5;
+            --dark: #0d0d1a;
+            --success: #00b894;
+            --warning: #fdcb6e;
+            --info: #0984e3;
+            --text: #ffffff;
+            --text-secondary: #b8b8b8;
         }
         
         * {
@@ -27,15 +29,41 @@
         }
         
         body {
-            background-color: #FDF5F5;
+            background-color: var(--dark);
             color: var(--text);
             line-height: 1.6;
+            overflow-x: hidden;
         }
         
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 15px;
+        }
+        
+        /* Animasi Fade In */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.8s ease forwards;
+        }
+        
+        .fade-in-delay-1 {
+            animation: fadeIn 0.8s ease 0.2s forwards;
+            opacity: 0;
+        }
+        
+        .fade-in-delay-2 {
+            animation: fadeIn 0.8s ease 0.4s forwards;
+            opacity: 0;
+        }
+        
+        .fade-in-delay-3 {
+            animation: fadeIn 0.8s ease 0.6s forwards;
+            opacity: 0;
         }
         
         /* Header Styles */
@@ -47,28 +75,44 @@
             position: sticky;
             top: 0;
             z-index: 100;
+            transition: all 0.3s ease;
         }
         
         .header-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: relative;
         }
         
         .logo {
             display: flex;
             align-items: center;
             gap: 10px;
+            transition: transform 0.3s ease;
+        }
+        
+        .logo:hover {
+            transform: scale(1.05);
         }
         
         .logo i {
             font-size: 2rem;
-            color: var(--light);
+            color: var(--highlight);
+            transition: all 0.5s ease;
+        }
+        
+        .logo:hover i {
+            transform: rotate(15deg);
         }
         
         .logo h1 {
             font-size: 1.8rem;
             font-weight: 600;
+            background: linear-gradient(to right, var(--highlight), var(--info));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
         
         .nav-menu {
@@ -84,10 +128,27 @@
             padding: 8px 15px;
             border-radius: 4px;
             transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 50%;
+            background-color: var(--highlight);
+            transition: all 0.3s ease;
+        }
+        
+        .nav-menu a:hover::after, .nav-menu a.active::after {
+            width: 80%;
+            left: 10%;
         }
         
         .nav-menu a:hover, .nav-menu a.active {
-            background-color: rgba(255, 255, 255, 0.2);
+            color: var(--highlight);
         }
         
         .mobile-menu-btn {
@@ -97,17 +158,41 @@
             color: white;
             font-size: 1.5rem;
             cursor: pointer;
+            transition: transform 0.3s ease;
+            z-index: 101;
+        }
+        
+        .mobile-menu-btn:hover {
+            transform: scale(1.1);
         }
         
         /* Hero Section */
         .hero {
-            background: linear-gradient(rgba(139, 0, 0, 0.8), rgba(139, 0, 0, 0.8)), url('https://images.unsplash.com/photo-1579546929662-711aa81148cf?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+            background: linear-gradient(rgba(26, 26, 46, 0.85), rgba(22, 33, 62, 0.85)), url('https://images.unsplash.com/photo-1579546929662-711aa81148cf?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
             background-size: cover;
             background-position: center;
             color: white;
             padding: 4rem 0;
             text-align: center;
             margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent 65%, rgba(233, 69, 96, 0.1) 70%, transparent 75%);
+            animation: shine 3s infinite linear;
+        }
+        
+        @keyframes shine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
         }
         
         .hero h2 {
@@ -120,6 +205,7 @@
             font-size: 1.2rem;
             max-width: 700px;
             margin: 0 auto;
+            color: var(--text-secondary);
         }
         
         /* Dashboard Cards */
@@ -131,38 +217,70 @@
         }
         
         .card {
-            background: white;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
             padding: 1.5rem;
-            transition: transform 0.3s ease;
-            border-left: 4px solid var(--primary);
+            transition: all 0.3s ease;
+            border-left: 4px solid var(--highlight);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.5s;
+        }
+        
+        .card:hover::before {
+            left: 100%;
         }
         
         .card:hover {
             transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
         }
         
         .card-icon {
             font-size: 2.5rem;
-            color: var(--primary);
+            color: var(--highlight);
             margin-bottom: 1rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover .card-icon {
+            transform: scale(1.1);
         }
         
         .card h3 {
             font-size: 1.3rem;
             margin-bottom: 0.5rem;
-            color: var(--primary);
+            color: var(--highlight);
+        }
+        
+        .card p {
+            color: var(--text-secondary);
         }
         
         /* Section Styles */
         .section {
-            background: white;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
             padding: 1.5rem;
             margin-bottom: 2rem;
-            border-top: 3px solid var(--primary);
+            border-top: 3px solid var(--highlight);
+            transition: all 0.3s ease;
+        }
+        
+        .section:hover {
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
         }
         
         .section-header {
@@ -171,12 +289,12 @@
             align-items: center;
             margin-bottom: 1.5rem;
             padding-bottom: 0.5rem;
-            border-bottom: 2px solid var(--light);
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
         }
         
         .section-title {
             font-size: 1.5rem;
-            color: var(--primary);
+            color: var(--highlight);
             display: flex;
             align-items: center;
             gap: 10px;
@@ -196,17 +314,22 @@
         th, td {
             padding: 12px 15px;
             text-align: left;
-            border-bottom: 1px solid #e0e0e0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         th {
-            background-color: var(--light);
-            color: var(--primary);
+            background-color: rgba(255, 255, 255, 0.05);
+            color: var(--highlight);
             font-weight: 600;
         }
         
+        tr {
+            transition: all 0.3s ease;
+        }
+        
         tr:hover {
-            background-color: #f9f9f9;
+            background-color: rgba(255, 255, 255, 0.05);
+            transform: translateX(5px);
         }
         
         /* Piket Grid */
@@ -217,16 +340,22 @@
         }
         
         .piket-card {
-            background: var(--light);
+            background: rgba(255, 255, 255, 0.05);
             border-radius: 8px;
             padding: 1rem;
             text-align: center;
-            border-left: 4px solid var(--primary);
+            border-left: 4px solid var(--highlight);
+            transition: all 0.3s ease;
+        }
+        
+        .piket-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
         
         .piket-day {
             font-weight: 600;
-            color: var(--primary);
+            color: var(--highlight);
             margin-bottom: 0.5rem;
         }
         
@@ -235,28 +364,25 @@
             overflow-x: auto;
         }
         
-        .jadwal-table {
-            width: 100%;
-            border-collapse: collapse;
-            min-width: 800px;
+        .jadwal-hari {
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
         }
         
-        .jadwal-table th {
-            text-align: center;
-            background-color: var(--primary);
-            color: white;
-            padding: 15px 10px;
-            font-size: 1.1rem;
+        .jadwal-hari:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
         
-        .jadwal-table td {
-            text-align: center;
-            padding: 12px 8px;
-            border: 1px solid #e0e0e0;
+        .jadwal-hari:last-child {
+            margin-bottom: 0;
         }
         
         .hari-header {
-            background-color: var(--secondary);
+            background: linear-gradient(135deg, var(--accent), var(--highlight));
             color: white;
             font-weight: 600;
             padding: 15px;
@@ -264,69 +390,54 @@
             font-size: 1.2rem;
         }
         
-        .mapel {
-            font-weight: 500;
-            color: var(--primary);
-            background-color: rgba(139, 0, 0, 0.05);
-            border-radius: 6px;
-            transition: all 0.3s ease;
-        }
-        
-        .mapel:hover {
-            background-color: rgba(139, 0, 0, 0.1);
-            transform: scale(1.02);
-        }
-        
-        .jam-header {
-            background-color: var(--light);
-            color: var(--primary);
-            font-weight: 600;
-            width: 120px;
-        }
-        
-        /* Jadwal Grid Layout */
-        .jadwal-hari {
-            margin-bottom: 2rem;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        
-        .jadwal-hari:last-child {
-            margin-bottom: 0;
-        }
-        
         .jadwal-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
             gap: 10px;
             padding: 15px;
-            background: white;
+            background: rgba(255, 255, 255, 0.05);
         }
         
         .mapel-item {
-            background: var(--light);
+            background: rgba(255, 255, 255, 0.05);
             padding: 15px 10px;
             border-radius: 8px;
             text-align: center;
-            border-left: 4px solid var(--primary);
+            border-left: 4px solid var(--highlight);
             transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .mapel-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(233, 69, 96, 0.1), transparent);
+            transition: left 0.5s;
+        }
+        
+        .mapel-item:hover::before {
+            left: 100%;
         }
         
         .mapel-item:hover {
             transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
         }
         
         .mapel-nama {
             font-weight: 600;
-            color: var(--primary);
+            color: var(--highlight);
             margin-bottom: 5px;
         }
         
         .mapel-waktu {
             font-size: 0.85rem;
-            color: var(--secondary);
+            color: var(--text-secondary);
         }
         
         /* Struktur Kelas */
@@ -338,13 +449,19 @@
         }
         
         .wali-kelas {
-            background: var(--light);
+            background: rgba(255, 255, 255, 0.05);
             padding: 1.5rem;
             border-radius: 8px;
             text-align: center;
             width: 100%;
             max-width: 400px;
-            border: 2px solid var(--primary);
+            border: 2px solid var(--highlight);
+            transition: all 0.3s ease;
+        }
+        
+        .wali-kelas:hover {
+            transform: scale(1.02);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
         
         .ketua-kelas {
@@ -355,13 +472,19 @@
         }
         
         .ketua, .wakil {
-            background: var(--light);
+            background: rgba(255, 255, 255, 0.05);
             padding: 1rem;
             border-radius: 8px;
             text-align: center;
             flex: 1;
             margin: 0 10px;
-            border: 2px solid var(--secondary);
+            border: 2px solid var(--accent);
+            transition: all 0.3s ease;
+        }
+        
+        .ketua:hover, .wakil:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
         
         .seksi {
@@ -372,11 +495,17 @@
         }
         
         .seksi-card {
-            background: var(--light);
+            background: rgba(255, 255, 255, 0.05);
             padding: 1rem;
             border-radius: 8px;
             text-align: center;
-            border: 2px solid var(--accent);
+            border: 2px solid var(--info);
+            transition: all 0.3s ease;
+        }
+        
+        .seksi-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
         
         /* Footer */
@@ -386,6 +515,7 @@
             padding: 2rem 0;
             text-align: center;
             margin-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         .footer-content {
@@ -400,6 +530,11 @@
             align-items: center;
             gap: 10px;
             font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .footer-logo:hover {
+            transform: scale(1.05);
         }
         
         .social-links {
@@ -410,11 +545,13 @@
         .social-links a {
             color: white;
             font-size: 1.2rem;
-            transition: color 0.3s ease;
+            transition: all 0.3s ease;
+            display: inline-block;
         }
         
         .social-links a:hover {
-            color: var(--accent);
+            color: var(--highlight);
+            transform: translateY(-3px);
         }
         
         /* Responsive Styles */
@@ -439,28 +576,44 @@
         
         @media (max-width: 768px) {
             .header-content {
-                flex-direction: column;
-                gap: 15px;
+                flex-direction: row;
+                justify-content: space-between;
             }
             
             .nav-menu {
                 display: none;
                 flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
                 width: 100%;
+                background: linear-gradient(135deg, var(--primary), var(--secondary));
+                padding: 1rem 0;
                 text-align: center;
-                gap: 10px;
-                margin-top: 15px;
+                gap: 0;
+                margin-top: 0;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                z-index: 99;
             }
             
             .nav-menu.active {
                 display: flex;
             }
             
+            .nav-menu li {
+                width: 100%;
+            }
+            
+            .nav-menu a {
+                display: block;
+                padding: 12px 15px;
+                width: 100%;
+                border-radius: 0;
+            }
+            
             .mobile-menu-btn {
                 display: block;
-                position: absolute;
-                right: 20px;
-                top: 20px;
+                position: static;
             }
             
             .hero {
@@ -491,11 +644,6 @@
             .jadwal-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
-            
-            .jadwal-table th, .jadwal-table td {
-                padding: 8px 5px;
-                font-size: 0.85rem;
-            }
         }
         
         @media (max-width: 576px) {
@@ -521,11 +669,6 @@
             
             .jadwal-grid {
                 grid-template-columns: 1fr;
-            }
-            
-            .jadwal-table th, .jadwal-table td {
-                padding: 6px 4px;
-                font-size: 0.8rem;
             }
             
             .seksi {
@@ -557,8 +700,8 @@
     <header>
         <div class="container">
             <div class="header-content">
-                <div class="logo">
-                    <i class="fas fa-shield-alt"></i>
+                <div class="logo fade-in">
+                    <i class="fas fa-rocket"></i>
                     <h1>SoftwoNexa</h1>
                 </div>
                 <button class="mobile-menu-btn" id="mobileMenuBtn">
@@ -578,36 +721,36 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
-            <h2>Kelas XI RPL 2</h2>
-            <p>"Bersatu kita teguh, bercerai kita runtuh. Mari wujudkan kelas yang berprestasi dan berkarakter!"</p>
+            <h2 class="fade-in">Kelas XI RPL 2</h2>
+            <p class="fade-in-delay-1">“Dengan semangat kebersamaan, kami melangkah maju menuju masa depan gemilang.”Bersatu kita teguh, bercerai kita runtuh.Mari wujudkan kelas yang berprestasi dan berkarakter!</p>
         </div>
     </section>
 
     <!-- Dashboard -->
     <div class="container">
         <div class="dashboard-cards">
-            <div class="card">
+            <div class="card fade-in">
                 <div class="card-icon">
                     <i class="fas fa-users"></i>
                 </div>
                 <h3>Data Siswa</h3>
                 <p>Total 32 siswa dengan 12 perempuan dan 20 laki-laki</p>
             </div>
-            <div class="card">
+            <div class="card fade-in-delay-1">
                 <div class="card-icon">
                     <i class="fas fa-calendar-alt"></i>
                 </div>
                 <h3>Jadwal Piket</h3>
                 <p>Piket kelas terjadwal setiap hari</p>
             </div>
-            <div class="card">
+            <div class="card fade-in-delay-2">
                 <div class="card-icon">
                     <i class="fas fa-book"></i>
                 </div>
                 <h3>Jadwal Pelajaran</h3>
                 <p>Mata pelajaran dari Senin hingga Jumat</p>
             </div>
-            <div class="card">
+            <div class="card fade-in-delay-3">
                 <div class="card-icon">
                     <i class="fas fa-sitemap"></i>
                 </div>
@@ -617,7 +760,7 @@
         </div>
 
         <!-- Data Siswa -->
-        <section id="siswa" class="section">
+        <section id="siswa" class="section fade-in">
             <div class="section-header">
                 <h2 class="section-title"><i class="fas fa-users"></i> Data Siswa</h2>
             </div>
@@ -626,7 +769,6 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>NIS</th>
                             <th>Nama Lengkap</th>
                             <th>Jenis Kelamin</th>
                         </tr>
@@ -634,193 +776,161 @@
                     <tbody>
                         <tr>
                             <td>1</td>
-                            <td>0085995229</td>
                             <td>ABDILLAH MUHANNAD AL FUZEA</td>
                             <td>Laki-laki</td>
                         </tr>
                         <tr>
                             <td>2</td>
-                            <td>0093130960</td>
                             <td>AHMAD DWI ANDIKA PUTRA</td>
                             <td>Laki-laki</td>
                         </tr>
                         <tr>
                             <td>3</td>
-                            <td>3091100981</td>
                             <td>ANANDA RESTU KURNIA SANDI</td>
                             <td>Laki-laki</td>
                         </tr>
                         <tr>
                             <td>4</td>
-                            <td>0098651869</td>
                             <td>ANANDITA VINZA PURWANDINI</td>
                             <td>Perempuan</td>
                         </tr>
                         <tr>
                             <td>5</td>
-                            <td>0085924637</td>
                             <td>ANDRIAN SAPUTRI</td>
                             <td>Perempuan</td>
                         </tr>
                         <tr>
                             <td>6</td>
-                            <td>0099858689</td>
                             <td>AURA KASIH FARADITA</td>
                             <td>Perempuan</td>
                         </tr>
                         <tr>
                             <td>7</td>
-                            <td>0091464864</td>
                             <td>BAGAS TRI WIDIANTO</td>
                             <td>Laki-laki</td>
                         </tr>
                         <tr>
                             <td>8</td>
-                            <td>0081749319</td>
                             <td>BAYU PUTRA YUDHA PRATAMA</td>
                             <td>Laki-laki</td>
                         </tr>
                         <tr>
                             <td>9</td>
-                            <td>0094852422</td>
                             <td>BRYANSYAH HUTAMA PUTRA</td>
                             <td>Laki-laki</td>
                         </tr>
                         <tr>
                             <td>10</td>
-                            <td>0077311730</td>
                             <td>CHOIRUL ANAM FIRMANSYAH</td>
                             <td>Laki-laki</td>
                         </tr>
                         <tr>
                             <td>11</td>
-                            <td>0092791904</td>
                             <td>CINDY EKA MAHARDITA</td>
                             <td>Perempuan</td>
                         </tr>
                         <tr>
                             <td>12</td>
-                            <td>0091084030</td>
                             <td>CYNTHIA WANDARI JULIANA</td>
                             <td>Perempuan</td>
                         </tr>
                         <tr>
                             <td>13</td>
-                            <td>0091104551</td>
                             <td>DELA AULIA SINTYA DINI</td>
                             <td>Perempuan</td>
                         </tr>
                         <tr>
                             <td>14</td>
-                            <td>0094704272</td>
                             <td>DINA FEBRIANI</td>
                             <td>Perempuan</td>
                         </tr>
                         <tr>
                             <td>15</td>
-                            <td>0083753684</td>
                             <td>EKA APRILIA CAHYANI</td>
                             <td>Perempuan</td>
                         </tr>
                         <tr>
                             <td>16</td>
-                            <td>0098069255</td>
                             <td>ELI MUNAWAROH</td>
                             <td>Perempuan</td>
                         </tr>
                         <tr>
                             <td>17</td>
-                            <td>0087088926</td>
                             <td>FADHLAN EL FAUZI</td>
                             <td>Laki-laki</td>
                         </tr>
                         <tr>
                             <td>18</td>
-                            <td>0084517541</td>
                             <td>FAJAR ARGA ARDIANSYAH</td>
                             <td>Laki-laki</td>
                         </tr>
                         <tr>
                             <td>19</td>
-                            <td>0055350249</td>
                             <td>FALENTINUS WAIRIPITS</td>
                             <td>Laki-laki</td>
                         </tr>
                         <tr>
                             <td>20</td>
-                            <td>0109630380</td>
                             <td>FEBRI RIZKY DWI SAPUTRA</td>
                             <td>Laki-laki</td>
                         </tr>
                         <tr>
                             <td>21</td>
-                            <td>0097050179</td>
                             <td>FIKA</td>
                             <td>Perempuan</td>
                         </tr>
                         <tr>
                             <td>22</td>
-                            <td>0082575300</td>
                             <td>HALIMATUS ZAHRO</td>
                             <td>Perempuan</td>
                         </tr>
                         <tr>
                             <td>23</td>
-                            <td>0077488472</td>
                             <td>IFAN PRAS SETIAWAN</td>
                             <td>Laki-laki</td>
                         </tr>
                         <tr>
                             <td>24</td>
-                            <td>0083986987</td>
                             <td>JENI AULIA NURCAHYA</td>
                             <td>Perempuan</td>
                         </tr>
                         <tr>
                             <td>25</td>
-                            <td>0093831944</td>
                             <td>M. ALI RIDHO</td>
                             <td>Laki-laki</td>
                         </tr>
                         <tr>
                             <td>26</td>
-                            <td>0158759457</td>
                             <td>MAYKO BINTANG SAPUTRA</td>
                             <td>Laki-laki</td>
                         </tr>
                         <tr>
                             <td>27</td>
-                            <td>3081424350</td>
                             <td>M. JHUVE DAVASYAH R.H</td>
                             <td>Laki-laki</td>
                         </tr>
                         <tr>
                             <td>28</td>
-                            <td>0096930071</td>
                             <td>MOCH ROIHAN SAPUTRA</td>
                             <td>Laki-laki</td>
                         </tr>
                         <tr>
                             <td>29</td>
-                            <td>3085861622</td>
                             <td>M. REZA</td>
                             <td>Laki-laki</td>
                         </tr>
                         <tr>
                             <td>30</td>
-                            <td>3095552210</td>
                             <td>M. RIZKY</td>
                             <td>Laki-laki</td>
                         </tr>
                         <tr>
                             <td>31</td>
-                            <td>3095660029</td>
                             <td>MUH. AL FARIZI</td>
                             <td>Laki-laki</td>
                         </tr>
                         <tr>
                             <td>32</td>
-                            <td>3089614104</td>
                             <td>QIAN ARIS AHMAD YANI</td>
                             <td>Laki-laki</td>
                         </tr>
@@ -830,28 +940,28 @@
         </section>
 
         <!-- Jadwal Piket -->
-        <section id="piket" class="section">
+        <section id="piket" class="section fade-in">
             <div class="section-header">
                 <h2 class="section-title"><i class="fas fa-calendar-alt"></i> Jadwal Piket</h2>
             </div>
             <div class="piket-grid">
-                <div class="piket-card">
+                <div class="piket-card fade-in">
                     <div class="piket-day">Senin</div>
                     <div class="piket-members">Fika, Ifan, Eka, Reza, Febri, Falentinus</div>
                 </div>
-                <div class="piket-card">
+                <div class="piket-card fade-in-delay-1">
                     <div class="piket-day">Selasa</div>
                     <div class="piket-members">Aura, Fadlan, Cynthia, Dika, Mayko, Anam</div>
                 </div>
-                <div class="piket-card">
+                <div class="piket-card fade-in-delay-2">
                     <div class="piket-day">Rabu</div>
                     <div class="piket-members">Restu, Bryan, Putri, Ali, Qian, Dina</div>
                 </div>
-                <div class="piket-card">
+                <div class="piket-card fade-in-delay-3">
                     <div class="piket-day">Kamis</div>
                     <div class="piket-members">Faris, Royhan, Abdillah, Cindy, Jeni, Ely, Fajar</div>
                 </div>
-                <div class="piket-card">
+                <div class="piket-card fade-in">
                     <div class="piket-day">Jumat</div>
                     <div class="piket-members">Riski, Dela, Halima, Bayu, Bagas, Vinza, Jhuve</div>
                 </div>
@@ -859,13 +969,13 @@
         </section>
 
         <!-- Jadwal Pelajaran -->
-        <section id="pelajaran" class="section">
+        <section id="pelajaran" class="section fade-in">
             <div class="section-header">
                 <h2 class="section-title"><i class="fas fa-book"></i> Jadwal Pelajaran</h2>
             </div>
             
             <!-- Senin -->
-            <div class="jadwal-hari">
+            <div class="jadwal-hari fade-in">
                 <div class="hari-header">SENIN</div>
                 <div class="jadwal-grid">
                     <div class="mapel-item">
@@ -884,7 +994,7 @@
             </div>
 
             <!-- Selasa -->
-            <div class="jadwal-hari">
+            <div class="jadwal-hari fade-in-delay-1">
                 <div class="hari-header">SELASA</div>
                 <div class="jadwal-grid">
                     <div class="mapel-item">
@@ -903,7 +1013,7 @@
             </div>
 
             <!-- Rabu -->
-            <div class="jadwal-hari">
+            <div class="jadwal-hari fade-in-delay-2">
                 <div class="hari-header">RABU</div>
                 <div class="jadwal-grid">
                     <div class="mapel-item">
@@ -922,7 +1032,7 @@
             </div>
 
             <!-- Kamis -->
-            <div class="jadwal-hari">
+            <div class="jadwal-hari fade-in-delay-3">
                 <div class="hari-header">KAMIS</div>
                 <div class="jadwal-grid">
                     <div class="mapel-item">
@@ -941,7 +1051,7 @@
             </div>
 
             <!-- Jumat -->
-            <div class="jadwal-hari">
+            <div class="jadwal-hari fade-in">
                 <div class="hari-header">JUMAT</div>
                 <div class="jadwal-grid">
                     <div class="mapel-item">
@@ -958,35 +1068,35 @@
         </section>
 
         <!-- Struktur Kelas -->
-        <section id="struktur" class="section">
+        <section id="struktur" class="section fade-in">
             <div class="section-header">
                 <h2 class="section-title"><i class="fas fa-sitemap"></i> Struktur Kelas</h2>
             </div>
             <div class="struktur-kelas">
-                <div class="wali-kelas">
+                <div class="wali-kelas fade-in">
                     <h3>Wali Kelas</h3>
                     <p>Pak Fauzi</p>
                 </div>
                 <div class="ketua-kelas">
-                    <div class="ketua">
+                    <div class="ketua fade-in">
                         <h3>Ketua Kelas</h3>
                         <p>QIAN ARIS AHMAD YANI</p>
                     </div>
-                    <div class="wakil">
+                    <div class="wakil fade-in-delay-1">
                         <h3>Wakil Ketua</h3>
                         <p>CYNTHIA WANDARI JULIANA</p>
                     </div>
-                    <div class="wakil">
+                    <div class="wakil fade-in-delay-2">
                         <h3>Ketua Gank</h3>
                         <p>IFAN PRAS SETIAWAN</p>
                     </div>
                 </div>
                 <div class="seksi">
-                    <div class="seksi-card">
+                    <div class="seksi-card fade-in">
                         <h3>Sekretaris</h3>
                         <p>DELA AULIA SINTYA DINI</p>
                     </div>
-                    <div class="seksi-card">
+                    <div class="seksi-card fade-in-delay-1">
                         <h3>Bendahara</h3>
                         <p>AURA KASIH FARADITA</p>
                     </div>
@@ -999,18 +1109,18 @@
     <footer>
         <div class="container">
             <div class="footer-content">
-                <div class="footer-logo">
-                    <i class="fas fa-shield-alt"></i>
+                <div class="footer-logo fade-in">
+                    <i class="fas fa-rocket"></i>
                     <span>SoftwoNexa</span>
                 </div>
-                <p>Kelas XI RPL 2 | SMK Negeri 6 Jember</p>
+                <p class="fade-in-delay-1">Kelas XI RPL 2 | SMK Negeri 6 Jember</p>
                 <div class="social-links">
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-facebook"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#" class="fade-in"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="fade-in-delay-1"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="fade-in-delay-2"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="fade-in-delay-3"><i class="fab fa-youtube"></i></a>
                 </div>
-                <p>&copy; 2025 SoftwoNexa</p>
+                <p class="fade-in">&copy; 2025 SoftwoNexa</p>
             </div>
         </div>
     </footer>
@@ -1020,11 +1130,20 @@
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const navMenu = document.getElementById('navMenu');
         
-        mobileMenuBtn.addEventListener('click', () => {
+        mobileMenuBtn.addEventListener('click', (e) => {
+            e.stopPropagation(); // Mencegah event bubbling
             navMenu.classList.toggle('active');
             if (navMenu.classList.contains('active')) {
                 mobileMenuBtn.innerHTML = '<i class="fas fa-times"></i>';
             } else {
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            }
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.header-content') && navMenu.classList.contains('active')) {
+                navMenu.classList.remove('active');
                 mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
             }
         });
@@ -1067,13 +1186,29 @@
                 }
             });
         });
-        
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!e.target.closest('.header-content') && navMenu.classList.contains('active')) {
-                navMenu.classList.remove('active');
-                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-            }
+
+        // Intersection Observer untuk animasi saat scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements that should animate on scroll
+        document.addEventListener('DOMContentLoaded', () => {
+            const elementsToAnimate = document.querySelectorAll('.section, .card, .piket-card, .jadwal-hari, .mapel-item, .wali-kelas, .ketua, .wakil, .seksi-card');
+            
+            elementsToAnimate.forEach(el => {
+                observer.observe(el);
+            });
         });
     </script>
 </body>
