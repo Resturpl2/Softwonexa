@@ -3,24 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FluxusNova</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Exo+2:wght@300;400;500;600;700&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>FluxusNova | XI RPL 2</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary: #0f172a;
-            --secondary: #1e293b;
-            --accent: #334155;
-            --highlight: #7c3aed;
+            /* Color Palette - Sophisticated & Subtle */
+            --primary: #4a5568;
+            --primary-light: #718096;
+            --primary-dark: #2d3748;
+            --secondary: #5d6b82;
+            --accent: #6b7280;
+            --dark: #0f1419;
+            --darker: #070a0d;
             --light: #f8fafc;
-            --dark: #020617;
-            --success: #10b981;
-            --warning: #f59e0b;
+            --gray-light: #e2e8f0;
+            --gray: #94a3b8;
+            --gray-dark: #475569;
+            --success: #059669;
+            --warning: #d97706;
             --info: #3b82f6;
-            --text: #f1f5f9;
-            --text-secondary: #cbd5e1;
-            --gradient-primary: linear-gradient(135deg, #0f172a, #1e293b);
-            --gradient-accent: linear-gradient(135deg, #7c3aed, #a855f7);
+            
+            /* Glass Effects */
+            --glass: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --glass-hover: rgba(255, 255, 255, 0.05);
+            
+            /* Shadows - Subtle */
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
+            --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+            --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.15);
+            
+            /* Gradients - Subtle */
+            --gradient-primary: linear-gradient(135deg, #4a5568 0%, #5d6b82 100%);
+            --gradient-dark: linear-gradient(135deg, #0f1419 0%, #1a202c 100%);
+            --gradient-subtle: linear-gradient(135deg, rgba(74, 85, 104, 0.1) 0%, rgba(93, 107, 130, 0.1) 100%);
+            
+            /* Typography */
+            --font-heading: 'Plus Jakarta Sans', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            --font-mono: 'Geist', monospace;
         }
         
         * {
@@ -29,271 +52,197 @@
             box-sizing: border-box;
         }
         
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
+        
         body {
-            background-color: var(--dark);
-            color: var(--text);
+            background-color: var(--darker);
+            color: var(--light);
+            font-family: var(--font-body);
             line-height: 1.6;
             overflow-x: hidden;
-            font-family: 'Exo 2', sans-serif;
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(74, 85, 104, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 85% 30%, rgba(93, 107, 130, 0.03) 0%, transparent 50%);
         }
         
         .container {
-            max-width: 1200px;
+            max-width: 1280px;
             margin: 0 auto;
-            padding: 0 15px;
+            padding: 0 24px;
         }
         
-        /* Animasi Fade In */
+        /* ===== Animations ===== */
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
+            from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
         
-        /* Animasi Slide In */
-        @keyframes slideInLeft {
-            from { opacity: 0; transform: translateX(-50px); }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-20px); }
             to { opacity: 1; transform: translateX(0); }
         }
         
-        @keyframes slideInRight {
-            from { opacity: 0; transform: translateX(50px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-        
-        /* Animasi Bounce */
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-10px); }
-            60% { transform: translateY(-5px); }
-        }
-        
-        /* Animasi Pulse */
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-        
-        /* Animasi Rotate */
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-        
-        /* Animasi Glow */
-        @keyframes glow {
-            0% { box-shadow: 0 0 5px var(--highlight); }
-            50% { box-shadow: 0 0 20px var(--highlight); }
-            100% { box-shadow: 0 0 5px var(--highlight); }
-        }
-        
-        /* Animasi Float */
         @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
         }
         
-        /* Animasi Text Glow */
-        @keyframes textGlow {
-            0% { text-shadow: 0 0 5px rgba(124, 58, 237, 0.5); }
-            50% { text-shadow: 0 0 15px rgba(124, 58, 237, 0.8), 0 0 20px rgba(124, 58, 237, 0.6); }
-            100% { text-shadow: 0 0 5px rgba(124, 58, 237, 0.5); }
+        @keyframes shimmer {
+            0% { background-position: -1000px 0; }
+            100% { background-position: 1000px 0; }
         }
         
-        /* Animasi Gradient Shift */
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        
-        /* Animasi Neon */
-        @keyframes neon {
-            0%, 100% {
-                text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px var(--highlight), 0 0 20px var(--highlight);
-            }
-            50% {
-                text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px var(--highlight), 0 0 40px var(--highlight);
-            }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
         }
         
         .fade-in {
-            animation: fadeIn 1s ease forwards;
+            animation: fadeIn 0.6s ease forwards;
         }
         
-        .fade-in-delay-1 {
-            animation: fadeIn 1s ease 0.2s forwards;
-            opacity: 0;
-        }
-        
-        .fade-in-delay-2 {
-            animation: fadeIn 1s ease 0.4s forwards;
-            opacity: 0;
-        }
-        
-        .fade-in-delay-3 {
-            animation: fadeIn 1s ease 0.6s forwards;
-            opacity: 0;
-        }
-        
-        .slide-in-left {
-            animation: slideInLeft 1s ease forwards;
-        }
-        
-        .slide-in-right {
-            animation: slideInRight 1s ease forwards;
-        }
-        
-        .bounce {
-            animation: bounce 1s;
-        }
-        
-        .pulse {
-            animation: pulse 2s infinite;
-        }
-        
-        .rotate {
-            animation: rotate 2s linear infinite;
-        }
-        
-        .glow {
-            animation: glow 2s infinite;
+        .slide-in {
+            animation: slideIn 0.6s ease forwards;
         }
         
         .float {
             animation: float 3s ease-in-out infinite;
         }
         
-        .text-glow {
-            animation: textGlow 2s ease-in-out infinite;
+        .pulse {
+            animation: pulse 2s ease-in-out infinite;
         }
         
-        .neon {
-            animation: neon 1.5s ease-in-out infinite alternate;
-        }
-        
-        .gradient-shift {
-            background: linear-gradient(-45deg, #0f172a, #1e293b, #334155, #7c3aed);
-            background-size: 400% 400%;
-            animation: gradientShift 10s ease infinite;
-        }
-        
-        /* Header Styles */
+        /* ===== Header & Navigation ===== */
         header {
-            background: var(--gradient-primary);
-            color: white;
-            padding: 1rem 0;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            position: sticky;
+            position: fixed;
             top: 0;
-            z-index: 100;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 20px 0;
             transition: all 0.3s ease;
+            backdrop-filter: blur(20px);
+            background: rgba(15, 20, 25, 0.85);
+            border-bottom: 1px solid var(--glass-border);
+        }
+        
+        header.scrolled {
+            padding: 15px 0;
+            box-shadow: var(--shadow-md);
+            background: rgba(15, 20, 25, 0.95);
         }
         
         .header-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            position: relative;
         }
         
         .logo {
             display: flex;
             align-items: center;
-            gap: 10px;
-            transition: transform 0.3s ease;
+            gap: 12px;
+            text-decoration: none;
         }
         
-        .logo:hover {
-            transform: scale(1.05);
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            color: var(--primary-light);
+            font-size: 1rem;
+            transition: all 0.3s ease;
         }
         
-        .logo i {
-            font-size: 2rem;
-            color: var(--highlight);
-            transition: all 0.5s ease;
-        }
-        
-        .logo:hover i {
+        .logo:hover .logo-icon {
+            background: var(--glass-hover);
             transform: rotate(15deg);
         }
         
-        .logo h1 {
-            font-size: 1.8rem;
+        .logo-text {
+            font-family: var(--font-heading);
             font-weight: 700;
-            font-family: 'Orbitron', sans-serif;
-            background: var(--gradient-accent);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            animation: textGlow 3s ease-in-out infinite;
-            letter-spacing: 1px;
+            font-size: 1.4rem;
+            color: var(--light);
+            letter-spacing: -0.5px;
+        }
+        
+        .logo-text span {
+            color: var(--primary-light);
+            font-weight: 400;
         }
         
         .nav-menu {
             display: flex;
             list-style: none;
-            gap: 20px;
+            gap: 4px;
         }
         
-        .nav-menu a {
-            color: white;
+        .nav-link {
+            padding: 10px 20px;
+            border-radius: 12px;
             text-decoration: none;
+            color: var(--gray);
             font-weight: 500;
-            padding: 8px 15px;
-            border-radius: 4px;
+            font-size: 0.95rem;
             transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
             position: relative;
-            font-family: 'Rajdhani', sans-serif;
-            font-weight: 600;
-            letter-spacing: 0.5px;
         }
         
-        .nav-menu a::after {
+        .nav-link:hover {
+            color: var(--light);
+            background: var(--glass-hover);
+        }
+        
+        .nav-link.active {
+            color: var(--light);
+            background: var(--glass);
+        }
+        
+        .nav-link.active::after {
             content: '';
             position: absolute;
-            width: 0;
-            height: 2px;
             bottom: 0;
             left: 50%;
-            background-color: var(--highlight);
-            transition: all 0.3s ease;
-        }
-        
-        .nav-menu a:hover::after, .nav-menu a.active::after {
-            width: 80%;
-            left: 10%;
-        }
-        
-        .nav-menu a:hover, .nav-menu a.active {
-            color: var(--highlight);
+            transform: translateX(-50%);
+            width: 20px;
+            height: 2px;
+            background: var(--primary-light);
+            border-radius: 2px;
         }
         
         .mobile-menu-btn {
             display: none;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.5rem;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 10px;
+            width: 40px;
+            height: 40px;
+            color: var(--light);
+            font-size: 1.1rem;
             cursor: pointer;
-            transition: transform 0.3s ease;
-            z-index: 101;
+            transition: all 0.3s ease;
         }
         
         .mobile-menu-btn:hover {
-            transform: scale(1.1);
+            background: var(--glass-hover);
         }
         
-        /* Hero Section */
+        /* ===== Hero Section ===== */
         .hero {
-            background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(30, 41, 59, 0.85)), url('https://images.unsplash.com/photo-1579546929662-711aa81148cf?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            padding: 4rem 0;
-            text-align: center;
-            margin-bottom: 2rem;
+            padding: 160px 0 100px;
             position: relative;
             overflow: hidden;
         }
@@ -305,48 +254,112 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(45deg, transparent 65%, rgba(124, 58, 237, 0.1) 70%, transparent 75%);
-            animation: shine 3s infinite linear;
+            background: linear-gradient(180deg, 
+                rgba(7, 10, 13, 0.9) 0%,
+                rgba(7, 10, 13, 0.7) 50%,
+                rgba(7, 10, 13, 0.9) 100%);
+            z-index: -1;
         }
         
-        @keyframes shine {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 1;
         }
         
-        .hero h2 {
-            font-size: 2.8rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-            font-family: 'Orbitron', sans-serif;
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            padding: 8px 20px;
+            border-radius: 50px;
+            margin-bottom: 30px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--primary-light);
+            backdrop-filter: blur(10px);
+        }
+        
+        .hero-title {
+            font-family: var(--font-heading);
+            font-size: 3rem;
             font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 24px;
+            color: var(--light);
+        }
+        
+        .hero-title span {
+            background: linear-gradient(135deg, var(--primary-light) 0%, var(--light) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            position: relative;
+        }
+        
+        .hero-title span::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-light), transparent);
+        }
+        
+        .hero-description {
+            font-size: 1.1rem;
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto 40px;
+            line-height: 1.7;
+        }
+        
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 60px;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-family: var(--font-heading);
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--primary-light);
+            line-height: 1;
+        }
+        
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--gray);
+            margin-top: 8px;
+            text-transform: uppercase;
             letter-spacing: 1px;
         }
         
-        .hero p {
-            font-size: 1.3rem;
-            max-width: 700px;
-            margin: 0 auto;
-            color: var(--text-secondary);
-            font-family: 'Exo 2', sans-serif;
-            font-weight: 400;
-        }
-        
-        /* Dashboard Cards */
+        /* ===== Dashboard Cards ===== */
         .dashboard-cards {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-bottom: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-bottom: 60px;
         }
         
         .card {
-            background: var(--gradient-primary);
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            padding: 1.5rem;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 30px;
             transition: all 0.3s ease;
-            border-left: 4px solid var(--highlight);
             position: relative;
             overflow: hidden;
         }
@@ -355,789 +368,755 @@
             content: '';
             position: absolute;
             top: 0;
-            left: -100%;
+            left: 0;
             width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            transition: left 0.5s;
-        }
-        
-        .card:hover::before {
-            left: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--primary-light), transparent);
         }
         
         .card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            border-color: var(--glass-hover);
+            box-shadow: var(--shadow-lg);
         }
         
         .card-icon {
-            font-size: 2.5rem;
-            color: var(--highlight);
-            margin-bottom: 1rem;
-            transition: transform 0.3s ease;
-        }
-        
-        .card:hover .card-icon {
-            transform: scale(1.1);
-        }
-        
-        .card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
-            color: var(--highlight);
-            font-family: 'Rajdhani', sans-serif;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-        }
-        
-        .card p {
-            color: var(--text-secondary);
-            font-family: 'Exo 2', sans-serif;
-        }
-        
-        /* Section Styles */
-        .section {
-            background: var(--gradient-primary);
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            padding: 1.5rem;
-            margin-bottom: 2rem;
-            border-top: 3px solid var(--highlight);
+            width: 56px;
+            height: 56px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            color: var(--primary-light);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
             transition: all 0.3s ease;
         }
         
-        .section:hover {
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        .card:hover .card-icon {
+            background: var(--glass-hover);
+            transform: scale(1.05);
+        }
+        
+        .card h3 {
+            font-family: var(--font-heading);
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--light);
+        }
+        
+        .card p {
+            color: var(--gray);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        /* ===== Section Styles ===== */
+        .section {
+            margin-bottom: 80px;
         }
         
         .section-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 1.5rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 40px;
         }
         
         .section-title {
-            font-size: 1.5rem;
-            color: var(--highlight);
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            font-weight: 700;
             display: flex;
             align-items: center;
-            gap: 10px;
-            font-family: 'Orbitron', sans-serif;
-            font-weight: 600;
-            letter-spacing: 0.5px;
+            gap: 12px;
+            color: var(--light);
         }
         
-        /* Table Styles */
-        .table-responsive {
-            overflow-x: auto;
+        .section-title i {
+            color: var(--primary-light);
+        }
+        
+        .section-subtitle {
+            color: var(--gray);
+            font-size: 1rem;
+            max-width: 600px;
+        }
+        
+        /* ===== Table Styles ===== */
+        .table-container {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
         }
         
         table {
             width: 100%;
             border-collapse: collapse;
-            min-width: 600px;
         }
         
-        th, td {
-            padding: 12px 15px;
-            text-align: left;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            font-family: 'Exo 2', sans-serif;
+        thead {
+            background: var(--glass-hover);
         }
         
         th {
-            background-color: rgba(255, 255, 255, 0.05);
-            color: var(--highlight);
+            padding: 18px 24px;
+            text-align: left;
             font-weight: 600;
-            font-family: 'Rajdhani', sans-serif;
+            color: var(--primary-light);
+            font-size: 0.9rem;
+            text-transform: uppercase;
             letter-spacing: 0.5px;
+            border-bottom: 1px solid var(--glass-border);
         }
         
-        tr {
-            transition: all 0.3s ease;
+        td {
+            padding: 18px 24px;
+            border-bottom: 1px solid var(--glass-border);
+            color: var(--gray);
         }
         
-        tr:hover {
-            background-color: rgba(255, 255, 255, 0.05);
-            transform: translateX(5px);
+        tbody tr {
+            transition: all 0.2s ease;
         }
         
-        /* Piket Grid */
+        tbody tr:hover {
+            background: var(--glass-hover);
+        }
+        
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+        
+        /* ===== Piket Grid ===== */
         .piket-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
         }
         
         .piket-card {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 8px;
-            padding: 1rem;
-            text-align: center;
-            border-left: 4px solid var(--highlight);
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 14px;
+            padding: 24px;
             transition: all 0.3s ease;
         }
         
         .piket-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transform: translateY(-3px);
+            border-color: var(--glass-hover);
+            box-shadow: var(--shadow-md);
         }
         
         .piket-day {
+            font-family: var(--font-heading);
+            font-size: 1rem;
             font-weight: 600;
-            color: var(--highlight);
-            margin-bottom: 0.5rem;
-            font-family: 'Rajdhani', sans-serif;
-            font-weight: 600;
-            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+            color: var(--primary-light);
         }
         
         .piket-members {
-            font-family: 'Exo 2', sans-serif;
-            color: var(--text);
+            color: var(--gray);
+            font-size: 0.9rem;
+            line-height: 1.5;
         }
         
-        /* Jadwal Styles */
+        /* ===== Jadwal Styles ===== */
         .jadwal-container {
-            overflow-x: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
         }
         
-        .jadwal-hari {
-            margin-bottom: 2rem;
-            border-radius: 8px;
+        .jadwal-day {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
             transition: all 0.3s ease;
         }
         
-        .jadwal-hari:hover {
+        .jadwal-day:hover {
             transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            border-color: var(--glass-hover);
+            box-shadow: var(--shadow-md);
         }
         
-        .jadwal-hari:last-child {
-            margin-bottom: 0;
-        }
-        
-        .hari-header {
-            background: var(--gradient-accent);
-            color: white;
+        .day-header {
+            padding: 18px 24px;
+            background: var(--glass-hover);
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
             font-weight: 600;
-            padding: 15px;
-            text-align: center;
-            font-size: 1.2rem;
-            font-family: 'Orbitron', sans-serif;
-            letter-spacing: 1px;
+            color: var(--light);
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
         
         .jadwal-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 10px;
-            padding: 15px;
-            background: rgba(255, 255, 255, 0.05);
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 16px;
+            padding: 24px;
         }
         
-        .mapel-item {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 15px 10px;
-            border-radius: 8px;
+        .subject-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid transparent;
+            border-radius: 12px;
+            padding: 18px;
             text-align: center;
-            border-left: 4px solid var(--highlight);
             transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
         }
         
-        .mapel-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(124, 58, 237, 0.1), transparent);
-            transition: left 0.5s;
+        .subject-card:hover {
+            background: var(--glass-hover);
+            border-color: var(--glass-border);
         }
         
-        .mapel-item:hover::before {
-            left: 100%;
-        }
-        
-        .mapel-item:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-        }
-        
-        .mapel-nama {
+        .subject-name {
+            font-family: var(--font-heading);
             font-weight: 600;
-            color: var(--text); /* Diubah menjadi putih */
-            margin-bottom: 5px;
-            font-family: 'Rajdhani', sans-serif;
-            font-weight: 600;
-            letter-spacing: 0.5px;
+            font-size: 1rem;
+            color: var(--light);
         }
         
-        .mapel-waktu {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            font-family: 'Exo 2', sans-serif;
-        }
-        
-        /* Struktur Kelas */
-        .struktur-kelas {
+        /* ===== Struktur Kelas ===== */
+        .struktur-container {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 20px;
+            gap: 30px;
         }
         
-        .wali-kelas {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 1.5rem;
-            border-radius: 8px;
+        .wali-card {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 30px;
             text-align: center;
-            width: 100%;
             max-width: 400px;
-            border: 2px solid var(--highlight);
+            width: 100%;
             transition: all 0.3s ease;
         }
         
-        .wali-kelas:hover {
-            transform: scale(1.02);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        .wali-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--glass-hover);
+            box-shadow: var(--shadow-lg);
         }
         
-        .wali-kelas h3, .ketua h3, .wakil h3, .seksi-card h3 {
-            font-family: 'Rajdhani', sans-serif;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            margin-bottom: 0.5rem;
-            color: var(--highlight);
-        }
-        
-        .wali-kelas p, .ketua p, .wakil p, .seksi-card p {
-            font-family: 'Exo 2', sans-serif;
-            color: var(--text);
-        }
-        
-        .ketua-kelas {
+        .wali-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--glass);
+            border: 2px solid var(--glass-border);
             display: flex;
-            justify-content: space-between;
-            width: 100%;
-            max-width: 600px;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: var(--primary-light);
+            font-size: 1.8rem;
+            transition: all 0.3s ease;
         }
         
-        .ketua, .wakil {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 1rem;
-            border-radius: 8px;
+        .wali-card:hover .wali-avatar {
+            border-color: var(--primary-light);
+            transform: scale(1.05);
+        }
+        
+        .wali-card h3 {
+            font-family: var(--font-heading);
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--light);
+        }
+        
+        .wali-card p {
+            color: var(--primary-light);
+            font-size: 1rem;
+        }
+        
+        .ketua-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            width: 100%;
+        }
+        
+        .leader-card {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 14px;
+            padding: 24px;
             text-align: center;
             flex: 1;
-            margin: 0 10px;
-            border: 2px solid var(--accent);
+            min-width: 240px;
+            max-width: 280px;
             transition: all 0.3s ease;
         }
         
-        .ketua:hover, .wakil:hover {
+        .leader-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            border-color: var(--glass-hover);
+            box-shadow: var(--shadow-md);
         }
         
-        .seksi {
+        .leader-avatar {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            color: var(--primary-light);
+            font-size: 1.3rem;
+        }
+        
+        .leader-card h3 {
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--light);
+        }
+        
+        .leader-card p {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+        
+        .seksi-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
             width: 100%;
         }
         
         .seksi-card {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 1rem;
-            border-radius: 8px;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 14px;
+            padding: 20px;
             text-align: center;
-            border: 2px solid var(--info);
             transition: all 0.3s ease;
         }
         
         .seksi-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transform: translateY(-3px);
+            border-color: var(--glass-hover);
         }
         
-        /* Footer */
+        .seksi-card h3 {
+            font-family: var(--font-heading);
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--light);
+        }
+        
+        .seksi-card p {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+        
+        /* ===== Footer ===== */
         footer {
             background: var(--dark);
-            color: white;
-            padding: 2rem 0;
-            text-align: center;
-            margin-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid var(--glass-border);
+            padding: 60px 0 40px;
+            margin-top: 80px;
         }
         
         .footer-content {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 1.5rem;
+            gap: 40px;
         }
         
         .footer-logo {
             display: flex;
             align-items: center;
-            gap: 10px;
-            font-size: 1.5rem;
-            transition: transform 0.3s ease;
-            font-family: 'Orbitron', sans-serif;
+            gap: 12px;
+            text-decoration: none;
+        }
+        
+        .footer-logo-text {
+            font-family: var(--font-heading);
             font-weight: 700;
-            letter-spacing: 1px;
+            font-size: 1.6rem;
+            color: var(--light);
         }
         
-        .footer-logo:hover {
-            transform: scale(1.05);
-        }
-        
-        .footer-sections {
-            display: flex;
-            justify-content: space-between;
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
             width: 100%;
-            max-width: 800px;
-            gap: 2rem;
         }
         
-        .footer-section {
-            flex: 1;
-            text-align: center;
-        }
-        
-        .footer-section-title {
-            font-size: 1.2rem;
-            color: var(--highlight);
-            margin-bottom: 1rem;
-            font-family: 'Rajdhani', sans-serif;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-        }
-        
-        .support-links {
+        .footer-column {
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 20px;
         }
         
-        .support-link {
+        .footer-title {
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--light);
+            margin-bottom: 8px;
+        }
+        
+        .footer-column p {
+            color: var(--gray);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 12px;
+        }
+        
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
-            color: white;
+            color: var(--gray);
             text-decoration: none;
-            padding: 10px 15px;
-            border-radius: 8px;
-            background: rgba(255, 255, 255, 0.05);
             transition: all 0.3s ease;
-            font-family: 'Rajdhani', sans-serif;
-            font-weight: 500;
-            letter-spacing: 0.5px;
         }
         
-        .support-link:hover {
-            background: rgba(124, 58, 237, 0.2);
-            transform: translateY(-3px);
+        .social-link:hover {
+            background: var(--glass-hover);
+            color: var(--light);
+            transform: translateY(-2px);
         }
         
-        .support-link i {
-            font-size: 1.2rem;
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--gray);
+            text-decoration: none;
+            padding: 12px 16px;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 10px;
+            transition: all 0.3s ease;
         }
         
-        .footer-text {
-            font-family: 'Exo 2', sans-serif;
+        .contact-link:hover {
+            background: var(--glass-hover);
+            color: var(--light);
+            transform: translateX(3px);
         }
         
-        /* Responsive Styles */
-        @media (max-width: 992px) {
-            .hero h2 {
-                font-size: 2.2rem;
-            }
-            
-            .hero p {
-                font-size: 1.1rem;
-                padding: 0 15px;
+        .copyright {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid var(--glass-border);
+            color: var(--gray);
+            font-size: 0.9rem;
+            width: 100%;
+        }
+        
+        /* ===== Responsive Styles ===== */
+        @media (max-width: 1024px) {
+            .hero-title {
+                font-size: 2.5rem;
             }
             
             .dashboard-cards {
                 grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .jadwal-grid {
-                grid-template-columns: repeat(3, 1fr);
             }
         }
         
         @media (max-width: 768px) {
-            .header-content {
-                flex-direction: row;
-                justify-content: space-between;
+            .mobile-menu-btn {
+                display: flex;
+                align-items: center;
+                justify-content: center;
             }
             
             .nav-menu {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 100%;
+                position: fixed;
+                top: 80px;
                 left: 0;
                 width: 100%;
-                background: var(--gradient-primary);
-                padding: 1rem 0;
-                text-align: center;
-                gap: 0;
-                margin-top: 0;
-                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-                z-index: 99;
+                flex-direction: column;
+                background: rgba(15, 20, 25, 0.95);
+                backdrop-filter: blur(20px);
+                padding: 20px;
+                border-top: 1px solid var(--glass-border);
+                border-bottom: 1px solid var(--glass-border);
+                transform: translateY(-100%);
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.4s ease;
+                z-index: 999;
             }
             
             .nav-menu.active {
-                display: flex;
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
             }
             
-            .nav-menu li {
-                width: 100%;
-            }
-            
-            .nav-menu a {
-                display: block;
-                padding: 12px 15px;
-                width: 100%;
-                border-radius: 0;
-            }
-            
-            .mobile-menu-btn {
-                display: block;
-                position: static;
+            .nav-link {
+                padding: 16px;
+                border-radius: 12px;
+                justify-content: center;
             }
             
             .hero {
-                padding: 3rem 0;
+                padding: 140px 0 80px;
             }
             
-            .hero h2 {
-                font-size: 1.8rem;
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .hero-description {
+                font-size: 1rem;
+            }
+            
+            .hero-stats {
+                flex-wrap: wrap;
+                gap: 30px;
             }
             
             .dashboard-cards {
                 grid-template-columns: 1fr;
             }
             
-            .ketua-kelas {
-                flex-direction: column;
-                gap: 15px;
-            }
-            
-            .ketua, .wakil {
-                margin: 0;
-            }
-            
-            .piket-grid {
-                grid-template-columns: repeat(2, 1fr);
+            .section-title {
+                font-size: 1.6rem;
             }
             
             .jadwal-grid {
                 grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .footer-sections {
-                flex-direction: column;
-                gap: 1.5rem;
             }
         }
         
         @media (max-width: 576px) {
-            .hero h2 {
-                font-size: 1.6rem;
+            .container {
+                padding: 0 16px;
             }
             
-            .hero p {
-                font-size: 1rem;
+            .hero-title {
+                font-size: 1.8rem;
             }
             
-            .section {
-                padding: 1rem;
+            .hero-badge {
+                font-size: 0.85rem;
             }
             
-            .section-title {
-                font-size: 1.3rem;
-            }
-            
-            .piket-grid {
-                grid-template-columns: 1fr;
+            .stat-number {
+                font-size: 1.8rem;
             }
             
             .jadwal-grid {
                 grid-template-columns: 1fr;
             }
             
-            .seksi {
+            .ketua-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .leader-card {
+                width: 100%;
+                max-width: 100%;
+            }
+            
+            .footer-grid {
                 grid-template-columns: 1fr;
             }
         }
         
-        @media (max-width: 400px) {
-            .logo h1 {
-                font-size: 1.5rem;
-            }
-            
-            .hero h2 {
-                font-size: 1.4rem;
-            }
-            
-            .card {
-                padding: 1rem;
-            }
-            
-            .card-icon {
-                font-size: 2rem;
-            }
+        /* ===== Scrollbar Styling ===== */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--dark);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-light);
         }
     </style>
 </head>
 <body>
     <!-- Header -->
-    <header>
+    <header id="header">
         <div class="container">
             <div class="header-content">
-                <div class="logo fade-in">
-                    <i class="fas fa-rocket float"></i>
-                    <h1>FluxusNova</h1>
-                </div>
+                <a href="#" class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-atom"></i>
+                    </div>
+                    <div class="logo-text">Fluxus<span>Nova</span></div>
+                </a>
+                
                 <button class="mobile-menu-btn" id="mobileMenuBtn">
                     <i class="fas fa-bars"></i>
                 </button>
+                
                 <ul class="nav-menu" id="navMenu">
-                    <li><a href="#" class="active">Beranda</a></li>
-                    <li><a href="#siswa">Data Siswa</a></li>
-                    <li><a href="#piket">Jadwal Piket</a></li>
-                    <li><a href="#pelajaran">Jadwal Pelajaran</a></li>
-                    <li><a href="#struktur">Struktur Kelas</a></li>
+                    <li><a href="#home" class="nav-link active"><i class="fas fa-home"></i> Beranda</a></li>
+                    <li><a href="#siswa" class="nav-link"><i class="fas fa-users"></i> Data Siswa</a></li>
+                    <li><a href="#piket" class="nav-link"><i class="fas fa-calendar-alt"></i> Jadwal Piket</a></li>
+                    <li><a href="#pelajaran" class="nav-link"><i class="fas fa-book"></i> Jadwal Pelajaran</a></li>
+                    <li><a href="#struktur" class="nav-link"><i class="fas fa-sitemap"></i> Struktur Kelas</a></li>
                 </ul>
             </div>
         </div>
     </header>
 
     <!-- Hero Section -->
-    <section class="hero">
+    <section class="hero" id="home">
         <div class="container">
-            <h2 class="fade-in neon">Kelas XI RPL 2</h2>
-            <p class="fade-in-delay-1">"Dengan semangat kebersamaan, kami melangkah maju menuju masa depan gemilang." Bersatu kita teguh, bercerai kita runtuh. Mari wujudkan kelas yang berprestasi dan berkarakter!</p>
+            <div class="hero-content fade-in">
+                <div class="hero-badge slide-in">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span>Kelas XI RPL 2 - SMK Negeri 6 Jember</span>
+                </div>
+                <h1 class="hero-title slide-in">Membangun Masa Depan <span>Digital</span> Bersama</h1>
+                <p class="hero-description slide-in">"Dengan semangat kebersamaan, kami melangkah maju menuju masa depan gemilang." Bersatu kita teguh, bercerai kita runtuh. Mari wujudkan kelas yang berprestasi dan berkarakter!</p>
+                
+                <div class="hero-stats">
+                    <div class="stat-item fade-in">
+                        <div class="stat-number">32</div>
+                        <div class="stat-label">Total Siswa</div>
+                    </div>
+                    <div class="stat-item fade-in" style="animation-delay: 0.1s">
+                        <div class="stat-number">12</div>
+                        <div class="stat-label">Siswi</div>
+                    </div>
+                    <div class="stat-item fade-in" style="animation-delay: 0.2s">
+                        <div class="stat-number">20</div>
+                        <div class="stat-label">Siswa</div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Dashboard -->
     <div class="container">
+        <!-- Dashboard Cards -->
         <div class="dashboard-cards">
             <div class="card fade-in">
                 <div class="card-icon">
                     <i class="fas fa-users"></i>
                 </div>
                 <h3>Data Siswa</h3>
-                <p>Total 32 siswa dengan 12 perempuan dan 20 laki-laki</p>
+                <p>Total 32 siswa dengan komposisi 12 perempuan dan 20 laki-laki yang siap berprestasi</p>
             </div>
-            <div class="card fade-in-delay-1">
+            <div class="card fade-in" style="animation-delay: 0.1s">
                 <div class="card-icon">
-                    <i class="fas fa-calendar-alt"></i>
+                    <i class="fas fa-calendar-check"></i>
                 </div>
                 <h3>Jadwal Piket</h3>
-                <p>Piket kelas terjadwal setiap hari</p>
+                <p>Piket kelas terjadwal setiap hari untuk menjaga kebersihan dan kerapian kelas</p>
             </div>
-            <div class="card fade-in-delay-2">
+            <div class="card fade-in" style="animation-delay: 0.2s">
                 <div class="card-icon">
-                    <i class="fas fa-book"></i>
+                    <i class="fas fa-graduation-cap"></i>
                 </div>
                 <h3>Jadwal Pelajaran</h3>
-                <p>Mata pelajaran dari Senin hingga Jumat</p>
+                <p>Mata pelajaran dari Senin hingga Jumat dengan fokus pada pengembangan skill IT</p>
             </div>
-            <div class="card fade-in-delay-3">
+            <div class="card fade-in" style="animation-delay: 0.3s">
                 <div class="card-icon">
-                    <i class="fas fa-sitemap"></i>
+                    <i class="fas fa-network-wired"></i>
                 </div>
                 <h3>Struktur Kelas</h3>
-                <p>Organisasi kelas dengan pembagian tugas yang jelas</p>
+                <p>Organisasi kelas dengan pembagian tugas yang jelas untuk efektivitas pembelajaran</p>
             </div>
         </div>
 
         <!-- Data Siswa -->
-        <section id="siswa" class="section fade-in">
+        <section id="siswa" class="section">
             <div class="section-header">
-                <h2 class="section-title"><i class="fas fa-users"></i> Data Siswa</h2>
+                <div>
+                    <h2 class="section-title"><i class="fas fa-users"></i> Data Siswa</h2>
+                    <p class="section-subtitle">Daftar lengkap siswa kelas XI RPL 2 SMK Negeri 6 Jember</p>
+                </div>
             </div>
-            <div class="table-responsive">
+            
+            <div class="table-container fade-in">
                 <table>
                     <thead>
                         <tr>
                             <th>No</th>
                             <th>Nama Lengkap</th>
+                            <th>Jenis Kelamin</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>ABDILLAH MUHANNAD AL FUZEA</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>AHMAD DWI ANDIKA PUTRA</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>ANANDA RESTU KURNIA SANDI</td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>ANANDITA VINZA PURWANDINI</td>
-                        </tr>
-                        <tr>
-                            <td>5</td>
-                            <td>ANDRIAN SAPUTRI</td>
-                        </tr>
-                        <tr>
-                            <td>6</td>
-                            <td>AURA KASIH FARADITA</td>
-                        </tr>
-                        <tr>
-                            <td>7</td>
-                            <td>BAGAS TRI WIDIANTO</td>
-                        </tr>
-                        <tr>
-                            <td>8</td>
-                            <td>BAYU PUTRA YUDHA PRATAMA</td>
-                        </tr>
-                        <tr>
-                            <td>9</td>
-                            <td>BRYANSYAH HUTAMA PUTRA</td>
-                        </tr>
-                        <tr>
-                            <td>10</td>
-                            <td>CHOIRUL ANAM FIRMANSYAH</td>
-                        </tr>
-                        <tr>
-                            <td>11</td>
-                            <td>CINDY EKA MAHARDITA</td>
-                        </tr>
-                        <tr>
-                            <td>12</td>
-                            <td>CYNTHIA WANDARI JULIANA</td>
-                        </tr>
-                        <tr>
-                            <td>13</td>
-                            <td>DELA AULIA SINTYA DINI</td>
-                        </tr>
-                        <tr>
-                            <td>14</td>
-                            <td>DINA FEBRIANI</td>
-                        </tr>
-                        <tr>
-                            <td>15</td>
-                            <td>EKA APRILIA CAHYANI</td>
-                        </tr>
-                        <tr>
-                            <td>16</td>
-                            <td>ELI MUNAWAROH</td>
-                        </tr>
-                        <tr>
-                            <td>17</td>
-                            <td>FADHLAN EL FAUZI</td>
-                        </tr>
-                        <tr>
-                            <td>18</td>
-                            <td>FAJAR ARGA ARDIANSYAH</td>
-                        </tr>
-                        <tr>
-                            <td>19</td>
-                            <td>FALENTINUS WAIRIPITS</td>
-                        </tr>
-                        <tr>
-                            <td>20</td>
-                            <td>FEBRI RIZKY DWI SAPUTRA</td>
-                        </tr>
-                        <tr>
-                            <td>21</td>
-                            <td>FIKA</td>
-                        </tr>
-                        <tr>
-                            <td>22</td>
-                            <td>HALIMATUS ZAHRO</td>
-                        </tr>
-                        <tr>
-                            <td>23</td>
-                            <td>IFAN PRAS SETIAWAN</td>
-                        </tr>
-                        <tr>
-                            <td>24</td>
-                            <td>JENI AULIA NURCAHYA</td>
-                        </tr>
-                        <tr>
-                            <td>25</td>
-                            <td>M. ALI RIDHO</td>
-                        </tr>
-                        <tr>
-                            <td>26</td>
-                            <td>MAYKO BINTANG SAPUTRA</td>
-                        </tr>
-                        <tr>
-                            <td>27</td>
-                            <td>M. JHUVE DAVASYAH R.H</td>
-                        </tr>
-                        <tr>
-                            <td>28</td>
-                            <td>MOCH ROIHAN SAPUTRA</td>
-                        </tr>
-                        <tr>
-                            <td>29</td>
-                            <td>M. REZA</td>
-                        </tr>
-                        <tr>
-                            <td>30</td>
-                            <td>M. RIZKY</td>
-                        </tr>
-                        <tr>
-                            <td>31</td>
-                            <td>MUH. AL FARIZI</td>
-                        </tr>
-                        <tr>
-                            <td>32</td>
-                            <td>QIAN ARIS AHMAD YANI</td>
-                        </tr>
+                    <tbody id="siswaTable">
+                        <!-- Data akan diisi oleh JavaScript -->
                     </tbody>
                 </table>
             </div>
         </section>
 
         <!-- Jadwal Piket -->
-        <section id="piket" class="section fade-in">
+        <section id="piket" class="section">
             <div class="section-header">
-                <h2 class="section-title"><i class="fas fa-calendar-alt"></i> Jadwal Piket</h2>
+                <div>
+                    <h2 class="section-title"><i class="fas fa-calendar-alt"></i> Jadwal Piket</h2>
+                    <p class="section-subtitle">Pembagian tugas piket harian untuk menjaga kebersihan kelas</p>
+                </div>
             </div>
+            
             <div class="piket-grid">
                 <div class="piket-card fade-in">
                     <div class="piket-day">Senin</div>
                     <div class="piket-members">Fika, Ifan, Eka, Reza, Febri, Falentinus</div>
                 </div>
-                <div class="piket-card fade-in-delay-1">
+                <div class="piket-card fade-in" style="animation-delay: 0.1s">
                     <div class="piket-day">Selasa</div>
                     <div class="piket-members">Aura, Fadlan, Cynthia, Dika, Mayko, Anam</div>
                 </div>
-                <div class="piket-card fade-in-delay-2">
+                <div class="piket-card fade-in" style="animation-delay: 0.2s">
                     <div class="piket-day">Rabu</div>
                     <div class="piket-members">Restu, Bryan, Putri, Ali, Qian, Dina</div>
                 </div>
-                <div class="piket-card fade-in-delay-3">
+                <div class="piket-card fade-in" style="animation-delay: 0.3s">
                     <div class="piket-day">Kamis</div>
                     <div class="piket-members">Faris, Royhan, Abdillah, Cindy, Jeni, Ely, Fajar</div>
                 </div>
-                <div class="piket-card fade-in">
+                <div class="piket-card fade-in" style="animation-delay: 0.4s">
                     <div class="piket-day">Jumat</div>
                     <div class="piket-members">Riski, Dela, Halima, Bayu, Bagas, Vinza, Jhuve</div>
                 </div>
@@ -1145,134 +1124,174 @@
         </section>
 
         <!-- Jadwal Pelajaran -->
-        <section id="pelajaran" class="section fade-in">
+        <section id="pelajaran" class="section">
             <div class="section-header">
-                <h2 class="section-title"><i class="fas fa-book"></i> Jadwal Pelajaran</h2>
+                <div>
+                    <h2 class="section-title"><i class="fas fa-book"></i> Jadwal Pelajaran</h2>
+                    <p class="section-subtitle">Jadwal mata pelajaran kelas XI RPL 2 semester 1</p>
+                </div>
             </div>
             
-            <!-- Senin -->
-            <div class="jadwal-hari fade-in">
-                <div class="hari-header">SENIN</div>
-                <div class="jadwal-grid">
-                    <div class="mapel-item">
-                        <div class="mapel-nama">RPL</div>
+            <div class="jadwal-container">
+                <!-- Senin -->
+                <div class="jadwal-day fade-in">
+                    <div class="day-header">
+                        <i class="fas fa-calendar-day"></i>
+                        SENIN
                     </div>
-                    <div class="mapel-item">
-                        <div class="mapel-nama">PPKN</div>
-                    </div>
-                    <div class="mapel-item">
-                        <div class="mapel-nama">Sejarah</div>
-                    </div>
-                    <div class="mapel-item">
-                        <div class="mapel-nama">RPL</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Selasa -->
-            <div class="jadwal-hari fade-in-delay-1">
-                <div class="hari-header">SELASA</div>
-                <div class="jadwal-grid">
-                    <div class="mapel-item">
-                        <div class="mapel-nama">RPL</div>
-                    </div>
-                    <div class="mapel-item">
-                        <div class="mapel-nama">Bhs Indonesia</div>
-                    </div>
-                    <div class="mapel-item">
-                        <div class="mapel-nama">RPL</div>
-                    </div>
-                    <div class="mapel-item">
-                        <div class="mapel-nama">Bahasa Inggris</div>
+                    <div class="jadwal-grid">
+                        <div class="subject-card">
+                            <div class="subject-name">RPL</div>
+                        </div>
+                        <div class="subject-card">
+                            <div class="subject-name">PPKN</div>
+                        </div>
+                        <div class="subject-card">
+                            <div class="subject-name">Sejarah</div>
+                        </div>
+                        <div class="subject-card">
+                            <div class="subject-name">RPL</div>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Rabu -->
-            <div class="jadwal-hari fade-in-delay-2">
-                <div class="hari-header">RABU</div>
-                <div class="jadwal-grid">
-                    <div class="mapel-item">
-                        <div class="mapel-nama">Bahasa Inggris</div>
+                <!-- Selasa -->
+                <div class="jadwal-day fade-in" style="animation-delay: 0.1s">
+                    <div class="day-header">
+                        <i class="fas fa-calendar-day"></i>
+                        SELASA
                     </div>
-                    <div class="mapel-item">
-                        <div class="mapel-nama">PKK</div>
-                    </div>
-                    <div class="mapel-item">
-                        <div class="mapel-nama">BP/BK</div>
-                    </div>
-                    <div class="mapel-item">
-                        <div class="mapel-nama">PAI</div>
+                    <div class="jadwal-grid">
+                        <div class="subject-card">
+                            <div class="subject-name">RPL</div>
+                        </div>
+                        <div class="subject-card">
+                            <div class="subject-name">Bhs Indonesia</div>
+                        </div>
+                        <div class="subject-card">
+                            <div class="subject-name">RPL</div>
+                        </div>
+                        <div class="subject-card">
+                            <div class="subject-name">Bahasa Inggris</div>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Kamis -->
-            <div class="jadwal-hari fade-in-delay-3">
-                <div class="hari-header">KAMIS</div>
-                <div class="jadwal-grid">
-                    <div class="mapel-item">
-                        <div class="mapel-nama">Matematika</div>
+                <!-- Rabu -->
+                <div class="jadwal-day fade-in" style="animation-delay: 0.2s">
+                    <div class="day-header">
+                        <i class="fas fa-calendar-day"></i>
+                        RABU
                     </div>
-                    <div class="mapel-item">
-                        <div class="mapel-nama">RPL</div>
-                    </div>
-                    <div class="mapel-item">
-                        <div class="mapel-nama">Bhs Arab</div>
-                    </div>
-                    <div class="mapel-item">
-                        <div class="mapel-nama">Penjaskes</div>
+                    <div class="jadwal-grid">
+                        <div class="subject-card">
+                            <div class="subject-name">Bahasa Inggris</div>
+                        </div>
+                        <div class="subject-card">
+                            <div class="subject-name">PKK</div>
+                        </div>
+                        <div class="subject-card">
+                            <div class="subject-name">BP/BK</div>
+                        </div>
+                        <div class="subject-card">
+                            <div class="subject-name">PAI</div>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Jumat -->
-            <div class="jadwal-hari fade-in">
-                <div class="hari-header">JUMAT</div>
-                <div class="jadwal-grid">
-                    <div class="mapel-item">
-                        <div class="mapel-nama">Mapel Pilihan</div>
+                <!-- Kamis -->
+                <div class="jadwal-day fade-in" style="animation-delay: 0.3s">
+                    <div class="day-header">
+                        <i class="fas fa-calendar-day"></i>
+                        KAMIS
                     </div>
-                    <div class="mapel-item">
-                        <div class="mapel-nama">RPL</div>
+                    <div class="jadwal-grid">
+                        <div class="subject-card">
+                            <div class="subject-name">Matematika</div>
+                        </div>
+                        <div class="subject-card">
+                            <div class="subject-name">RPL</div>
+                        </div>
+                        <div class="subject-card">
+                            <div class="subject-name">Bhs Arab</div>
+                        </div>
+                        <div class="subject-card">
+                            <div class="subject-name">Penjaskes</div>
+                        </div>
                     </div>
-                    <div class="mapel-item">
-                        <div class="mapel-nama">BMW/Pramuka</div>
+                </div>
+
+                <!-- Jumat -->
+                <div class="jadwal-day fade-in" style="animation-delay: 0.4s">
+                    <div class="day-header">
+                        <i class="fas fa-calendar-day"></i>
+                        JUMAT
+                    </div>
+                    <div class="jadwal-grid">
+                        <div class="subject-card">
+                            <div class="subject-name">Mapel Pilihan</div>
+                        </div>
+                        <div class="subject-card">
+                            <div class="subject-name">RPL</div>
+                        </div>
+                        <div class="subject-card">
+                            <div class="subject-name">BMW/Pramuka</div>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Struktur Kelas -->
-        <section id="struktur" class="section fade-in">
+        <section id="struktur" class="section">
             <div class="section-header">
-                <h2 class="section-title"><i class="fas fa-sitemap"></i> Struktur Kelas</h2>
+                <div>
+                    <h2 class="section-title"><i class="fas fa-sitemap"></i> Struktur Kelas</h2>
+                    <p class="section-subtitle">Susunan pengurus kelas XI RPL 2 periode 2025/2026</p>
+                </div>
             </div>
-            <div class="struktur-kelas">
-                <div class="wali-kelas fade-in">
+            
+            <div class="struktur-container">
+                <div class="wali-card fade-in">
+                    <div class="wali-avatar">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
                     <h3>Wali Kelas</h3>
                     <p>Pak Fauzi</p>
                 </div>
-                <div class="ketua-kelas">
-                    <div class="ketua fade-in">
+                
+                <div class="ketua-container">
+                    <div class="leader-card fade-in">
+                        <div class="leader-avatar">
+                            <i class="fas fa-crown"></i>
+                        </div>
                         <h3>Ketua Kelas</h3>
                         <p>QIAN ARIS AHMAD YANI</p>
                     </div>
-                    <div class="wakil fade-in-delay-1">
+                    
+                    <div class="leader-card fade-in" style="animation-delay: 0.1s">
+                        <div class="leader-avatar">
+                            <i class="fas fa-user-friends"></i>
+                        </div>
                         <h3>Wakil Ketua</h3>
                         <p>CYNTHIA WANDARI JULIANA</p>
                     </div>
-                    <div class="wakil fade-in-delay-2">
+                    
+                    <div class="leader-card fade-in" style="animation-delay: 0.2s">
+                        <div class="leader-avatar">
+                            <i class="fas fa-users"></i>
+                        </div>
                         <h3>Ketua Gank</h3>
                         <p>IFAN PRAS SETIAWAN</p>
                     </div>
                 </div>
-                <div class="seksi">
+                
+                <div class="seksi-grid">
                     <div class="seksi-card fade-in">
                         <h3>Sekretaris</h3>
                         <p>DELA AULIA SINTYA DINI</p>
                     </div>
-                    <div class="seksi-card fade-in-delay-1">
+                    <div class="seksi-card fade-in" style="animation-delay: 0.1s">
                         <h3>Bendahara</h3>
                         <p>AURA KASIH FARADITA</p>
                     </div>
@@ -1285,183 +1304,222 @@
     <footer>
         <div class="container">
             <div class="footer-content">
-                <div class="footer-logo fade-in">
-                    <i class="fas fa-rocket"></i>
-                    <span>FluxusNova</span>
-                </div>
-                <p class="footer-text fade-in-delay-1">Kelas XI RPL 2 | SMK Negeri 6 Jember</p>
+                <a href="#" class="footer-logo">
+                    <div class="footer-logo-text">FluxusNova</div>
+                </a>
                 
-                <div class="footer-sections">
-                    <!-- Akun Kelas -->
-                    <div class="footer-section fade-in">
-                        <h3 class="footer-section-title">Akun Kelas</h3>
-                        <div class="support-links">
-                            <a href="https://www.instagram.com/softtwo2_" class="support-link">
+                <div class="footer-grid">
+                    <div class="footer-column">
+                        <h3 class="footer-title">Tentang Kami</h3>
+                        <p>Kelas XI RPL 2 SMK Negeri 6 Jember. Komunitas belajar yang berfokus pada pengembangan skill teknologi informasi dan rekayasa perangkat lunak.</p>
+                        <div class="social-links">
+                            <a href="https://www.instagram.com/softtwo2_" class="social-link">
                                 <i class="fab fa-instagram"></i>
-                                <span>@SOFTWARETWO</span>
+                            </a>
+                            <a href="#" class="social-link">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="social-link">
+                                <i class="fab fa-youtube"></i>
                             </a>
                         </div>
                     </div>
                     
-                    <!-- Kritik & Saran -->
-                    <div class="footer-section fade-in-delay-1">
-                        <h3 class="footer-section-title">Kritik & Saran</h3>
-                        <div class="support-links">
-                            <a href="https://www.instagram.com/_rezxx1" class="support-link">
-                                <i class="fab fa-instagram"></i>
-                                <span>@Rezxx1</span>
-                            </a>
-                            <a href="https://wa.me/6285604047346?text=Halo%20saya%20ingin%20melaporkan%20bug/memberi%20saran%20untuk%20FluxusNova" class="support-link">
-                                <i class="fab fa-whatsapp"></i>
-                                <span>WhatsApp</span>
-                            </a>
-                        </div>
+                    <div class="footer-column">
+                        <h3 class="footer-title">Kritik & Saran</h3>
+                        <a href="https://www.instagram.com/_rezxx1" class="contact-link">
+                            <i class="fab fa-instagram"></i>
+                            <span>@_rezxx1 (Instagram)</span>
+                        </a>
+                        <a href="https://wa.me/6285604047346?text=Halo%20saya%20ingin%20melaporkan%20bug/memberi%20saran%20untuk%20FluxusNova" class="contact-link">
+                            <i class="fab fa-whatsapp"></i>
+                            <span>+62 856 0404 7346 (WhatsApp)</span>
+                        </a>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h3 class="footer-title">Navigasi Cepat</h3>
+                        <a href="#siswa" class="contact-link">
+                            <i class="fas fa-arrow-right"></i>
+                            <span>Data Siswa</span>
+                        </a>
+                        <a href="#piket" class="contact-link">
+                            <i class="fas fa-arrow-right"></i>
+                            <span>Jadwal Piket</span>
+                        </a>
+                        <a href="#pelajaran" class="contact-link">
+                            <i class="fas fa-arrow-right"></i>
+                            <span>Jadwal Pelajaran</span>
+                        </a>
+                        <a href="#struktur" class="contact-link">
+                            <i class="fas fa-arrow-right"></i>
+                            <span>Struktur Kelas</span>
+                        </a>
                     </div>
                 </div>
                 
-                <p class="footer-text fade-in">&copy; 2025 FluxusNova</p>
+                <div class="copyright">
+                    &copy; 2025 FluxusNova | Kelas XI RPL 2 SMK Negeri 6 Jember. All rights reserved.
+                </div>
             </div>
         </div>
     </footer>
 
     <script>
-        // Mobile Menu Toggle
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const navMenu = document.getElementById('navMenu');
-        
-        mobileMenuBtn.addEventListener('click', (e) => {
-            e.stopPropagation(); // Mencegah event bubbling
-            navMenu.classList.toggle('active');
-            if (navMenu.classList.contains('active')) {
-                mobileMenuBtn.innerHTML = '<i class="fas fa-times"></i>';
-            } else {
-                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-            }
-        });
-        
-        // Close menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!e.target.closest('.header-content') && navMenu.classList.contains('active')) {
-                navMenu.classList.remove('active');
-                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-            }
-        });
-        
-        // Smooth scrolling untuk navigasi
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
+        // Data siswa
+        const siswaData = [
+            { no: 1, nama: "ABDILLAH MUHANNAD AL FUZEA", gender: "L" },
+            { no: 2, nama: "AHMAD DWI ANDIKA PUTRA", gender: "L" },
+            { no: 3, nama: "ANANDA RESTU KURNIA SANDI", gender: "L" },
+            { no: 4, nama: "ANANDITA VINZA PURWANDINI", gender: "P" },
+            { no: 5, nama: "ANDRIAN SAPUTRI", gender: "P" },
+            { no: 6, nama: "AURA KASIH FARADITA", gender: "P" },
+            { no: 7, nama: "BAGAS TRI WIDIANTO", gender: "L" },
+            { no: 8, nama: "BAYU PUTRA YUDHA PRATAMA", gender: "L" },
+            { no: 9, nama: "BRYANSYAH HUTAMA PUTRA", gender: "L" },
+            { no: 10, nama: "CHOIRUL ANAM FIRMANSYAH", gender: "L" },
+            { no: 11, nama: "CINDY EKA MAHARDITA", gender: "P" },
+            { no: 12, nama: "CYNTHIA WANDARI JULIANA", gender: "P" },
+            { no: 13, nama: "DELA AULIA SINTYA DINI", gender: "P" },
+            { no: 14, nama: "DINA FEBRIANI", gender: "P" },
+            { no: 15, nama: "EKA APRILIA CAHYANI", gender: "P" },
+            { no: 16, nama: "ELI MUNAWAROH", gender: "P" },
+            { no: 17, nama: "FADHLAN EL FAUZI", gender: "L" },
+            { no: 18, nama: "FAJAR ARGA ARDIANSYAH", gender: "L" },
+            { no: 19, nama: "FALENTINUS WAIRIPITS", gender: "L" },
+            { no: 20, nama: "FEBRI RIZKY DWI SAPUTRA", gender: "L" },
+            { no: 21, nama: "FIKA", gender: "P" },
+            { no: 22, nama: "HALIMATUS ZAHRO", gender: "P" },
+            { no: 23, nama: "IFAN PRAS SETIAWAN", gender: "L" },
+            { no: 24, nama: "JENI AULIA NURCAHYA", gender: "P" },
+            { no: 25, nama: "M. ALI RIDHO", gender: "L" },
+            { no: 26, nama: "MAYKO BINTANG SAPUTRA", gender: "L" },
+            { no: 27, nama: "M. JHUVE DAVASYAH R.H", gender: "L" },
+            { no: 28, nama: "MOCH ROIHAN SAPUTRA", gender: "L" },
+            { no: 29, nama: "M. REZA", gender: "L" },
+            { no: 30, nama: "M. RIZKY", gender: "L" },
+            { no: 31, nama: "MUH. AL FARIZI", gender: "L" },
+            { no: 32, nama: "QIAN ARIS AHMAD YANI", gender: "L" }
+        ];
+
+        // Populate siswa table
+        document.addEventListener('DOMContentLoaded', function() {
+            const tableBody = document.getElementById('siswaTable');
+            
+            siswaData.forEach(siswa => {
+                const row = document.createElement('tr');
+                row.classList.add('fade-in');
                 
-                // Close mobile menu if open
-                if (navMenu.classList.contains('active')) {
+                const genderIcon = siswa.gender === 'L' 
+                    ? '<i class="fas fa-mars" style="color: #5d6b82;"></i> Laki-laki' 
+                    : '<i class="fas fa-venus" style="color: #a78bfa;"></i> Perempuan';
+                
+                row.innerHTML = `
+                    <td>${siswa.no}</td>
+                    <td>${siswa.nama}</td>
+                    <td>${genderIcon}</td>
+                `;
+                
+                tableBody.appendChild(row);
+            });
+
+            // Mobile menu toggle
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const navMenu = document.getElementById('navMenu');
+            
+            mobileMenuBtn.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                mobileMenuBtn.innerHTML = navMenu.classList.contains('active') 
+                    ? '<i class="fas fa-times"></i>' 
+                    : '<i class="fas fa-bars"></i>';
+            });
+
+            // Close mobile menu when clicking a link
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', () => {
                     navMenu.classList.remove('active');
                     mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-                }
-                
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
                 });
             });
-        });
 
-        // Highlight menu aktif berdasarkan scroll
-        window.addEventListener('scroll', function() {
-            let sections = document.querySelectorAll('section');
-            let navLinks = document.querySelectorAll('.nav-menu a');
-            
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (pageYOffset >= (sectionTop - 100)) {
-                    current = section.getAttribute('id');
+            // Header scroll effect
+            window.addEventListener('scroll', () => {
+                const header = document.getElementById('header');
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
                 }
             });
+
+            // Active nav link based on scroll position
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-link');
             
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href').substring(1) === current) {
-                    link.classList.add('active');
-                }
-            });
-        });
-
-        // Intersection Observer untuk animasi saat scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    // Tambahkan kelas animasi berdasarkan posisi elemen
-                    if (entry.target.classList.contains('section')) {
-                        entry.target.classList.add('fade-in');
-                    } else if (entry.target.classList.contains('card')) {
-                        entry.target.classList.add('fade-in');
-                    } else if (entry.target.classList.contains('piket-card')) {
-                        entry.target.classList.add('fade-in');
-                    } else if (entry.target.classList.contains('jadwal-hari')) {
-                        entry.target.classList.add('fade-in');
-                    } else if (entry.target.classList.contains('mapel-item')) {
-                        entry.target.classList.add('fade-in');
-                    } else if (entry.target.classList.contains('wali-kelas')) {
-                        entry.target.classList.add('fade-in');
-                    } else if (entry.target.classList.contains('ketua')) {
-                        entry.target.classList.add('fade-in');
-                    } else if (entry.target.classList.contains('wakil')) {
-                        entry.target.classList.add('fade-in');
-                    } else if (entry.target.classList.contains('seksi-card')) {
-                        entry.target.classList.add('fade-in');
-                    }
+            window.addEventListener('scroll', () => {
+                let current = '';
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
                     
-                    observer.unobserve(entry.target);
-                }
+                    if (scrollY >= (sectionTop - 100)) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').substring(1) === current) {
+                        link.classList.add('active');
+                    }
+                });
             });
-        }, observerOptions);
 
-        // Observe elements that should animate on scroll
-        document.addEventListener('DOMContentLoaded', () => {
-            const elementsToAnimate = document.querySelectorAll('.section, .card, .piket-card, .jadwal-hari, .mapel-item, .wali-kelas, .ketua, .wakil, .seksi-card');
-            
+            // Add animation delays to table rows
+            const tableRows = document.querySelectorAll('#siswaTable tr');
+            tableRows.forEach((row, index) => {
+                row.style.animationDelay = `${index * 0.03}s`;
+            });
+
+            // Add hover effects to cards
+            const cards = document.querySelectorAll('.card, .piket-card, .subject-card, .leader-card, .seksi-card');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    card.style.transform = 'translateY(-5px)';
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'translateY(0)';
+                });
+            });
+
+            // Add parallax effect to hero section
+            window.addEventListener('scroll', () => {
+                const scrolled = window.pageYOffset;
+                const hero = document.querySelector('.hero');
+                hero.style.transform = `translateY(${scrolled * 0.05}px)`;
+            });
+
+            // Initialize animations with Intersection Observer
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            // Observe elements for animation
+            const elementsToAnimate = document.querySelectorAll('.card, .piket-card, .jadwal-day, .subject-card, .wali-card, .leader-card, .seksi-card');
             elementsToAnimate.forEach(el => {
                 observer.observe(el);
-            });
-            
-            // Tambahkan efek animasi khusus untuk beberapa elemen
-            const logo = document.querySelector('.logo i');
-            logo.addEventListener('mouseenter', () => {
-                logo.classList.add('rotate');
-            });
-            logo.addEventListener('mouseleave', () => {
-                logo.classList.remove('rotate');
-            });
-            
-            // Animasi untuk card dashboard saat hover
-            const dashboardCards = document.querySelectorAll('.dashboard-cards .card');
-            dashboardCards.forEach(card => {
-                card.addEventListener('mouseenter', () => {
-                    card.classList.add('pulse');
-                });
-                card.addEventListener('mouseleave', () => {
-                    card.classList.remove('pulse');
-                });
-            });
-            
-            // Animasi untuk tombol menu mobile
-            mobileMenuBtn.addEventListener('mouseenter', () => {
-                mobileMenuBtn.classList.add('bounce');
-            });
-            mobileMenuBtn.addEventListener('mouseleave', () => {
-                mobileMenuBtn.classList.remove('bounce');
-            });
-            
-            // Animasi untuk tabel data siswa
-            const tableRows = document.querySelectorAll('#siswa tbody tr');
-            tableRows.forEach((row, index) => {
-                row.style.animationDelay = `${index * 0.05}s`;
-                row.classList.add('fade-in');
             });
         });
     </script>
